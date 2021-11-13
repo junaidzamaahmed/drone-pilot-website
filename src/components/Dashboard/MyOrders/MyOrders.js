@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const MyOrders = () => {
-  const { user } = useAuth();
+  const { user, setIsLoading } = useAuth();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -41,6 +41,30 @@ const MyOrders = () => {
       .then((data) => setOrders(data));
   }, []);
 
+  const handleDeleteClick = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this product data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios.delete(`http://localhost:5000/orders/${id}`).then((res) => {
+          console.log(res);
+          if (res.data.deletedCount === 1) {
+            setIsLoading(true);
+            swal(
+              "Product deleted successfully",
+              "Click ok to go close this",
+              "success"
+            );
+            setIsLoading(false);
+          }
+        });
+      }
+    });
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -70,9 +94,25 @@ const MyOrders = () => {
               <StyledTableCell align="right">{order.country}</StyledTableCell>
               <StyledTableCell align="right">
                 {order?.status ? (
-                  <div className="text-success">{order?.status}</div>
+                  <div className="text-success">
+                    {order?.status}{" "}
+                    <button
+                      className="bg-dark text-light"
+                      onClick={() => handleDeleteClick(order._id)}
+                    >
+                      Cancel Order
+                    </button>
+                  </div>
                 ) : (
-                  <div>Pending</div>
+                  <div>
+                    Pending <br />
+                    <button
+                      className="bg-dark text-light"
+                      onClick={() => handleDeleteClick(order._id)}
+                    >
+                      Cancel Order
+                    </button>
+                  </div>
                 )}
               </StyledTableCell>
             </StyledTableRow>

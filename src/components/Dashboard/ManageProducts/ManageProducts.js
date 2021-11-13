@@ -13,19 +13,23 @@ const ManageProducts = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then(() => {
-      axios.delete(`https://floating-dusk-12648.herokuapp.com/products/${id}`).then((res) => {
-        console.log(res);
-        if (res.data.deletedCount === 1) {
-          setIsLoading(true);
-          swal(
-            "Product deleted successfully",
-            "Click ok to go close this",
-            "success"
-          );
-          setIsLoading(false);
-        }
-      });
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`https://floating-dusk-12648.herokuapp.com/products/${id}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.deletedCount === 1) {
+              setIsLoading(true);
+              swal(
+                "Product deleted successfully",
+                "Click ok to go close this",
+                "success"
+              );
+              setIsLoading(false);
+            }
+          });
+      }
     });
   };
   return (

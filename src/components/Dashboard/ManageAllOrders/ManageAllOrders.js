@@ -92,13 +92,13 @@ const ManageAllOrders = () => {
                   <div className="text-success">{order?.status}</div>
                 ) : (
                   <div>
-                    Pending <br />{" "}
+                    Pending <br />
                     <button
                       className="bg-dark text-light"
                       onClick={() => handleApproveClick(order._id)}
                     >
                       Ship
-                    </button>{" "}
+                    </button>
                   </div>
                 )}
               </StyledTableCell>
