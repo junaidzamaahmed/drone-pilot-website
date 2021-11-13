@@ -4,10 +4,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import Grid from "@mui/material/Grid";
 import { NavLink, Switch, Route } from "react-router-dom";
 import MakeAdmin from "./MakeAdmin/MakeAdmin";
@@ -34,9 +31,7 @@ const Dashboard = () => {
               <List>
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <InboxIcon />
-                    </ListItemIcon>
+                    <ListItemIcon></ListItemIcon>
                     <NavLink
                       activeClassName="fw-bold"
                       to="/dashboard/manageallorders"
@@ -49,9 +44,7 @@ const Dashboard = () => {
                 <Divider />
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
+                    <ListItemIcon></ListItemIcon>
                     <NavLink
                       activeClassName="fw-bold"
                       to="/dashboard/addproduct"
@@ -64,9 +57,7 @@ const Dashboard = () => {
                 <Divider />
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
+                    <ListItemIcon></ListItemIcon>
                     <NavLink
                       activeClassName="fw-bold"
                       to="/dashboard/manageproducts"
@@ -79,9 +70,7 @@ const Dashboard = () => {
                 <Divider />
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
+                    <ListItemIcon></ListItemIcon>
                     <NavLink
                       activeClassName="fw-bold"
                       to="/dashboard/makeadmin"
@@ -94,9 +83,7 @@ const Dashboard = () => {
                 <Divider />
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
+                    <ListItemIcon></ListItemIcon>
                     <button
                       onClick={logOut}
                       className="text-decoration-none border border-0 bg-white text-dark ps-0"

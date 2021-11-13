@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 import Product from "./Product/Product";
 
-const Products = ({ slice }) => {
+const Products = ({ slice, fromDashboard, handleDeleteClick }) => {
   const [products, setProducts] = useState([]);
+  const { isLoading } = useAuth();
 
   useEffect(() => {
     fetch("https://floating-dusk-12648.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [isLoading]);
+  if (isLoading) {
+    return (
+      <div className="mid-page align-items-center d-flex justify-content-center">
+        <div className="spinner-border text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -24,7 +35,12 @@ const Products = ({ slice }) => {
                   <Product key={product._id} product={product}></Product>
                 ))
             : products?.map((product) => (
-                <Product key={product._id} product={product}></Product>
+                <Product
+                  key={product._id}
+                  product={product}
+                  fromDashboard={fromDashboard}
+                  handleDeleteClick={handleDeleteClick}
+                ></Product>
               ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import "./Product.css";
 
-const Product = ({ product }) => {
+const Product = ({ product, fromDashboard, handleDeleteClick }) => {
   const history = useHistory();
   const handleBookClick = () => {
     history.push(`/products/${product._id}`);
@@ -27,6 +27,16 @@ const Product = ({ product }) => {
               <i class="fas fa-shopping-cart"></i> Buy Now
             </button>
           </div>
+          {fromDashboard && (
+            <div className="d-flex justify-content-center w-100">
+              <button
+                className="primary-background button text-light text-decoration-none px-4 py-2 rounded-pill nav-item primary-button text-center my-2"
+                onClick={() => handleDeleteClick(product._id)}
+              >
+                <i class="fas fa-trash"></i> Delete Product
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

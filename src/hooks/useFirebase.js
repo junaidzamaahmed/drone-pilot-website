@@ -76,6 +76,16 @@ const useFirebase = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        console.log(user);
+        fetch(`https://floating-dusk-12648.herokuapp.com/users/${user.email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data?.role === "admin") {
+              setIsAdmin(true);
+            } else if (user?.role !== "admin") {
+              setIsAdmin(false);
+            }
+          });
       } else {
         setUser({});
       }
@@ -86,11 +96,17 @@ const useFirebase = () => {
   const saveUser = (user) => {
     axios
       .post("https://floating-dusk-12648.herokuapp.com/users", user)
-      .then((res) => {
-        console.log(res);
-      });
+      .then((res) => {});
   };
 
-  return { user, registerUser, signIn, logOut, isLoading, setIsLoading };
+  return {
+    user,
+    registerUser,
+    signIn,
+    logOut,
+    isLoading,
+    setIsLoading,
+    isAdmin,
+  };
 };
 export default useFirebase;
