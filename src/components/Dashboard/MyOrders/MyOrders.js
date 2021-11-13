@@ -31,35 +31,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const ManageAllOrders = () => {
-  const { isLoading, setIsLoading } = useAuth();
+const MyOrders = () => {
+  const { user } = useAuth();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("https://floating-dusk-12648.herokuapp.com/orders")
+    fetch(`https://floating-dusk-12648.herokuapp.com/orders/${user.uid}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
 
-  const handleApproveClick = (id) => {
-    axios
-      .put(`https://floating-dusk-12648.herokuapp.com/approveorder/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.modifiedCount === 1) {
-          console.log(res.data.modifiedCount);
-          setIsLoading(true);
-          fetch("https://floating-dusk-12648.herokuapp.com/orders")
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              setOrders(data);
-              setIsLoading(false);
-              swal("Great", `Order Approved`, "success");
-            });
-        }
-      });
-  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -91,15 +72,7 @@ const ManageAllOrders = () => {
                 {order?.status ? (
                   <div className="text-success">{order?.status}</div>
                 ) : (
-                  <div>
-                    Pending <br />{" "}
-                    <button
-                      className="bg-dark text-light"
-                      onClick={() => handleApproveClick(order._id)}
-                    >
-                      Ship
-                    </button>{" "}
-                  </div>
+                  <div>Pending</div>
                 )}
               </StyledTableCell>
             </StyledTableRow>
@@ -110,4 +83,4 @@ const ManageAllOrders = () => {
   );
 };
 
-export default ManageAllOrders;
+export default MyOrders;

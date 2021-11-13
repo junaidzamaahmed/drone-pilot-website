@@ -39,6 +39,13 @@ const Navigation = () => {
           </NavHashLink>
           <NavHashLink
             className="text-decoration-none mx-3 nav-item nav-links text-dark"
+            to="/home#reviews"
+            activeClassName="primary-text nav-border-bottom"
+          >
+            Reviews
+          </NavHashLink>
+          <NavHashLink
+            className="text-decoration-none mx-3 nav-item nav-links text-dark"
             to="/home#about"
             activeClassName="primary-text nav-border-bottom"
           >

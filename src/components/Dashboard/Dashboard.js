@@ -12,11 +12,15 @@ import AddProduct from "./AddProduct/AddProduct";
 import ManageAllOrders from "./ManageAllOrders/ManageAllOrders";
 import ManageProducts from "./ManageProducts/ManageProducts";
 import useAuth from "../../hooks/useAuth";
+import Reviews from "./Reviews/Reviews";
+import Pay from "./Pay/Pay";
+import MyOrders from "./MyOrders/MyOrders";
+import AdminRoute from "../Login/AdminRoute/AdminRoute";
 
 const Dashboard = () => {
-  const { logOut } = useAuth();
+  const { logOut, isAdmin } = useAuth();
   return (
-    <div className="nav-margin container">
+    <div className="nav-margin container min-height">
       <Grid container spacing={2}>
         <Grid item xs={12} md={2}>
           <Box
@@ -29,58 +33,104 @@ const Dashboard = () => {
           >
             <nav aria-label="main mailbox folders">
               <List>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon></ListItemIcon>
-                    <NavLink
-                      activeClassName="fw-bold"
-                      to="/dashboard/manageallorders"
-                      className="text-decoration-none text-dark"
-                    >
-                      Manage All Orders
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon></ListItemIcon>
-                    <NavLink
-                      activeClassName="fw-bold"
-                      to="/dashboard/addproduct"
-                      className="text-decoration-none text-dark"
-                    >
-                      Add a product
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon></ListItemIcon>
-                    <NavLink
-                      activeClassName="fw-bold"
-                      to="/dashboard/manageproducts"
-                      className="text-decoration-none text-dark"
-                    >
-                      Manage Products
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon></ListItemIcon>
-                    <NavLink
-                      activeClassName="fw-bold"
-                      to="/dashboard/makeadmin"
-                      className="text-decoration-none text-dark"
-                    >
-                      Make Admin
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
+                {isAdmin ? (
+                  <>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/manageallorders"
+                          className="text-decoration-none text-dark"
+                        >
+                          Manage All Orders
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/addproduct"
+                          className="text-decoration-none text-dark"
+                        >
+                          Add a product
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/manageproducts"
+                          className="text-decoration-none text-dark"
+                        >
+                          Manage Products
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/makeadmin"
+                          className="text-decoration-none text-dark"
+                        >
+                          Make Admin
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                  </>
+                ) : (
+                  <>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/pay"
+                          className="text-decoration-none text-dark"
+                        >
+                          Pay
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/myorders"
+                          className="text-decoration-none text-dark"
+                        >
+                          My Orders
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon></ListItemIcon>
+                        <NavLink
+                          activeClassName="fw-bold"
+                          to="/dashboard/reviews"
+                          className="text-decoration-none text-dark"
+                        >
+                          Review
+                        </NavLink>
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                  </>
+                )}
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon></ListItemIcon>
@@ -99,18 +149,27 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12} md={10}>
           <Switch>
-            <Route path="/dashboard/makeadmin">
+            <Route path="/dashboard/pay">
+              <Pay></Pay>
+            </Route>
+            <Route path="/dashboard/myorders">
+              <MyOrders></MyOrders>
+            </Route>
+            <Route path="/dashboard/reviews">
+              <Reviews></Reviews>
+            </Route>
+            <AdminRoute path="/dashboard/makeadmin">
               <MakeAdmin></MakeAdmin>
-            </Route>
-            <Route path="/dashboard/addproduct">
+            </AdminRoute>
+            <AdminRoute path="/dashboard/addproduct">
               <AddProduct></AddProduct>
-            </Route>
-            <Route path="/dashboard/manageallorders">
+            </AdminRoute>
+            <AdminRoute path="/dashboard/manageallorders">
               <ManageAllOrders></ManageAllOrders>
-            </Route>
-            <Route path="/dashboard/manageproducts">
+            </AdminRoute>
+            <AdminRoute path="/dashboard/manageproducts">
               <ManageProducts></ManageProducts>
-            </Route>
+            </AdminRoute>
           </Switch>
         </Grid>
       </Grid>

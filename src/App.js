@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navigation from "./components/Shared/Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -11,6 +10,7 @@ import Products from "./components/Home/Products/Products";
 import ProductDetails from "./components/Home/Products/ProductDetails/ProductDetails";
 import PurchaseSuccessful from "./components/Home/Products/PurchaseSuccessful/PurchaseSuccessful";
 import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
+import Footer from "./components/Shared/Footer/Footer";
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
               <PurchaseSuccessful></PurchaseSuccessful>
             </PrivateRoute>
           </Switch>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>

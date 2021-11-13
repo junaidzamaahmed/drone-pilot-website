@@ -1,5 +1,7 @@
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
+import About from "../About/About";
+import AllReviews from "../AllReviews/AllReviews";
 import Banner from "../Banner/Banner";
 import Products from "../Products/Products";
 
@@ -18,6 +20,8 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <Products slice={true}></Products>
+      <AllReviews></AllReviews>
+      <About></About>
     </div>
   );
 };
