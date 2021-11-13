@@ -3,7 +3,6 @@ import Product from "./Product/Product";
 
 const Products = ({ slice }) => {
   const [products, setProducts] = useState([]);
-  // const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
     fetch("https://floating-dusk-12648.herokuapp.com/products")

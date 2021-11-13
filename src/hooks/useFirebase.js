@@ -19,8 +19,8 @@ const useFirebase = () => {
 
   const auth = getAuth();
 
-  const registerUser = (loginData) => {
-    setIsLoading(true)
+  const registerUser = (loginData, history, redirectURL) => {
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
       .then((userCredential) => {
         const email = loginData.email;
@@ -28,6 +28,7 @@ const useFirebase = () => {
         const newUser = { email, displayName: name };
         setUser(newUser);
         saveUser(newUser);
+        history.push(redirectURL);
         updateProfile(auth.currentUser, {
           displayName: name,
         })
@@ -39,13 +40,13 @@ const useFirebase = () => {
       .catch((error) => {
         swal("Oops", `${error.message}`, "error");
       })
-      .finally(()=>{
-        setIsLoading(false)
-      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const signIn = (loginData, history, redirectURL) => {
-    setIsLoading(true)
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, loginData.email, loginData.password)
       .then((userCredential) => {
         history.push(redirectURL);
@@ -53,41 +54,43 @@ const useFirebase = () => {
       .catch((error) => {
         swal("Oops", `${error.message}`, "error");
       })
-      .finally(()=>{
-        setIsLoading(false)
-      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const logOut = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     signOut(auth)
       .then(() => {})
       .catch((error) => {
         swal("Oops", `${error.message}`, "error");
       })
-      .finally(()=>{
-        setIsLoading(false)
-      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       } else {
         setUser({});
       }
-      setIsLoading(false)
+      setIsLoading(false);
     });
   }, []);
 
   const saveUser = (user) => {
-    axios.post("https://floating-dusk-12648.herokuapp.com/users", user).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post("https://floating-dusk-12648.herokuapp.com/users", user)
+      .then((res) => {
+        console.log(res);
+      });
   };
 
-  return { user, registerUser, signIn, logOut, isLoading };
+  return { user, registerUser, signIn, logOut, isLoading, setIsLoading };
 };
 export default useFirebase;

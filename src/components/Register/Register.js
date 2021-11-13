@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useHistory, useLocation } from "react-router";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
   const { registerUser } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const redirectURL = location.state?.from || "/";
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
@@ -15,7 +19,7 @@ const Register = () => {
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    registerUser(loginData);
+    registerUser(loginData, history, redirectURL);
   };
   return (
     <div className="container nav-margin d-flex justify-content-center">
