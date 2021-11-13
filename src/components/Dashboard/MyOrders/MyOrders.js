@@ -50,18 +50,20 @@ const MyOrders = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        axios.delete(`http://localhost:5000/orders/${id}`).then((res) => {
-          console.log(res);
-          if (res.data.deletedCount === 1) {
-            setIsLoading(true);
-            swal(
-              "Product deleted successfully",
-              "Click ok to go close this",
-              "success"
-            );
-            setIsLoading(false);
-          }
-        });
+        axios
+          .delete(`https://floating-dusk-12648.herokuapp.com/orders/${id}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.deletedCount === 1) {
+              setIsLoading(true);
+              swal(
+                "Product deleted successfully",
+                "Click ok to go close this",
+                "success"
+              );
+              setIsLoading(false);
+            }
+          });
       }
     });
   };
