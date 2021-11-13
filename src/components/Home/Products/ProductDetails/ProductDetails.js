@@ -12,7 +12,7 @@ const ProductDetails = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/orders", data).then((res) => {
+    axios.post("https://floating-dusk-12648.herokuapp.com/orders", data).then((res) => {
       history.push("/purchasesuccessful");
       console.log(res);
     });
@@ -20,7 +20,7 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/products/" + id)
+    fetch("https://floating-dusk-12648.herokuapp.com/products/" + id)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);

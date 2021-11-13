@@ -6,7 +6,7 @@ const Products = ({ slice }) => {
   // const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://floating-dusk-12648.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
