@@ -32,10 +32,10 @@ const Navigation = () => {
           </NavHashLink>
           <NavHashLink
             className="text-decoration-none mx-3 nav-item nav-links text-dark"
-            to="/home#packages"
+            to="/home#products"
             activeClassName="primary-text nav-border-bottom"
           >
-            Packages
+            Products
           </NavHashLink>
           <NavHashLink
             className="text-decoration-none mx-3 nav-item nav-links text-dark"
