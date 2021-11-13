@@ -31,7 +31,6 @@ const ProductDetails = () => {
     <div className="nav-margin">
       <div className="d-flex justify-content-center">
         <img className="w-25" src={product?.imgURL} alt="" />
-        {/* <p>{produ}</p> */}
       </div>
       <div className="text-center container">
         <h2 className="text-center py-5 fs-1">
@@ -48,12 +47,12 @@ const ProductDetails = () => {
           >
             <input
               className="mb-2 rounded-pill p-2"
-              {...register("title", { required: true })}
+              {...register("productName", { required: true })}
               defaultValue={product?.name}
             />
             <input
               className="mb-2 rounded-pill p-2"
-              {...register("name", { required: true })}
+              {...register("customerName", { required: true })}
               defaultValue={user?.displayName}
             />
             <input
@@ -63,28 +62,25 @@ const ProductDetails = () => {
             />
             <input
               className="mb-2 rounded-pill p-2"
+              {...register("phone", { required: true })}
+              placeholder="Phone number"
               type="number"
-              {...register("age", { required: true })}
-              placeholder="Your Age"
             />
             <input
               className="mb-2 rounded-pill p-2"
-              {...register("fromCity", { required: true })}
+              {...register("Address", { required: true })}
+              placeholder="Address"
+            />
+            <input
+              className="mb-2 rounded-pill p-2"
+              {...register("city", { required: true })}
               placeholder="City"
             />
             <input
               className="mb-2 rounded-pill p-2"
-              {...register("fromCountry", { required: true })}
+              {...register("country", { required: true })}
               placeholder="Country"
             />
-            <select
-              className="mb-2 rounded-pill p-2"
-              {...register("gender", { required: true })}
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
             <label htmlFor="userid">Your Unique ID - *DO NOT EDIT THIS*</label>
             <input
               id="userid"

@@ -46,10 +46,10 @@ const Navigation = () => {
           </NavHashLink>
           <NavHashLink
             className="text-decoration-none mx-3 nav-item nav-links text-dark"
-            to="/home#contact"
+            to="/products"
             activeClassName="primary-text nav-border-bottom"
           >
-            Contact
+            Explore
           </NavHashLink>
           {user?.displayName && (
             <NavHashLink

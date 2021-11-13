@@ -12,8 +12,12 @@ import Grid from "@mui/material/Grid";
 import { NavLink, Switch, Route } from "react-router-dom";
 import MakeAdmin from "./MakeAdmin/MakeAdmin";
 import AddProduct from "./AddProduct/AddProduct";
+import ManageAllOrders from "./ManageAllOrders/ManageAllOrders";
+import ManageProducts from "./ManageProducts/ManageProducts";
+import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
+  const { logOut } = useAuth();
   return (
     <div className="nav-margin container">
       <Grid container spacing={2}>
@@ -33,7 +37,13 @@ const Dashboard = () => {
                     <ListItemIcon>
                       <InboxIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Inbox" />
+                    <NavLink
+                      activeClassName="fw-bold"
+                      to="/dashboard/manageallorders"
+                      className="text-decoration-none text-dark"
+                    >
+                      Manage All Orders
+                    </NavLink>
                   </ListItemButton>
                 </ListItem>
                 <Divider />
@@ -45,7 +55,7 @@ const Dashboard = () => {
                     <NavLink
                       activeClassName="fw-bold"
                       to="/dashboard/addproduct"
-                      className="text-decoration-none"
+                      className="text-decoration-none text-dark"
                     >
                       Add a product
                     </NavLink>
@@ -59,11 +69,40 @@ const Dashboard = () => {
                     </ListItemIcon>
                     <NavLink
                       activeClassName="fw-bold"
+                      to="/dashboard/manageproducts"
+                      className="text-decoration-none text-dark"
+                    >
+                      Manage Products
+                    </NavLink>
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <DraftsIcon />
+                    </ListItemIcon>
+                    <NavLink
+                      activeClassName="fw-bold"
                       to="/dashboard/makeadmin"
-                      className="text-decoration-none"
+                      className="text-decoration-none text-dark"
                     >
                       Make Admin
                     </NavLink>
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <DraftsIcon />
+                    </ListItemIcon>
+                    <button
+                      onClick={logOut}
+                      className="text-decoration-none border border-0 bg-white text-dark ps-0"
+                    >
+                      Logout
+                    </button>
                   </ListItemButton>
                 </ListItem>
                 <Divider />
@@ -78,6 +117,12 @@ const Dashboard = () => {
             </Route>
             <Route path="/dashboard/addproduct">
               <AddProduct></AddProduct>
+            </Route>
+            <Route path="/dashboard/manageallorders">
+              <ManageAllOrders></ManageAllOrders>
+            </Route>
+            <Route path="/dashboard/manageproducts">
+              <ManageProducts></ManageProducts>
             </Route>
           </Switch>
         </Grid>
