@@ -7,7 +7,7 @@ const Products = ({ slice, fromDashboard, handleDeleteClick }) => {
   const { isLoading } = useAuth();
 
   useEffect(() => {
-    fetch("https://floating-dusk-12648.herokuapp.com/products")
+    fetch("https://drone-pilot-server.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [isLoading]);

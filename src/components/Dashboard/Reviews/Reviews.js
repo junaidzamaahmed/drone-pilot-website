@@ -54,12 +54,14 @@ const Reviews = () => {
     e.preventDefault();
     if (data.rating <= 5 && data.rating >= 0) {
       console.log(data);
-      axios.post("https://floating-dusk-12648.herokuapp.com/reviews", data).then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          swal("Great", `Review added successfully`, "success");
-        }
-      });
+      axios
+        .post("https://drone-pilot-server.onrender.com/reviews", data)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            swal("Great", `Review added successfully`, "success");
+          }
+        });
     } else {
       swal("Error", `Please add a number between 0 to 5`, "error");
     }

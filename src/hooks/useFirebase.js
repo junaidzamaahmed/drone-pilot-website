@@ -77,7 +77,7 @@ const useFirebase = () => {
       if (user) {
         setUser(user);
         console.log(user);
-        fetch(`https://floating-dusk-12648.herokuapp.com/users/${user.email}`)
+        fetch(`https://drone-pilot-server.onrender.com/users/${user.email}`)
           .then((res) => res.json())
           .then((data) => {
             if (data?.role === "admin") {
@@ -95,7 +95,7 @@ const useFirebase = () => {
 
   const saveUser = (user) => {
     axios
-      .post("https://floating-dusk-12648.herokuapp.com/users", user)
+      .post("https://drone-pilot-server.onrender.com/users", user)
       .then((res) => {});
   };
 

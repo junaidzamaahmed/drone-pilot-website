@@ -15,12 +15,14 @@ const AddProduct = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(productData);
-    axios.post("https://floating-dusk-12648.herokuapp.com/products", productData).then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        swal("Great", `Product added successfully`, "success");
-      }
-    });
+    axios
+      .post("https://drone-pilot-server.onrender.com/products", productData)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          swal("Great", `Product added successfully`, "success");
+        }
+      });
   };
   return (
     <>

@@ -36,20 +36,20 @@ const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("https://floating-dusk-12648.herokuapp.com/orders")
+    fetch("https://drone-pilot-server.onrender.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
 
   const handleApproveClick = (id) => {
     axios
-      .put(`https://floating-dusk-12648.herokuapp.com/approveorder/${id}`)
+      .put(`https://drone-pilot-server.onrender.com/approveorder/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.modifiedCount === 1) {
           console.log(res.data.modifiedCount);
           setIsLoading(true);
-          fetch("https://floating-dusk-12648.herokuapp.com/orders")
+          fetch("https://drone-pilot-server.onrender.com/orders")
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

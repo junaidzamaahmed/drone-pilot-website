@@ -16,7 +16,7 @@ const ManageProducts = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://floating-dusk-12648.herokuapp.com/products/${id}`)
+          .delete(`https://drone-pilot-server.onrender.com/products/${id}`)
           .then((res) => {
             console.log(res);
             if (res.data.deletedCount === 1) {

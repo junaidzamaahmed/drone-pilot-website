@@ -7,7 +7,7 @@ const AllReviews = () => {
   const { isLoading } = useAuth();
 
   useEffect(() => {
-    fetch("https://floating-dusk-12648.herokuapp.com/reviews")
+    fetch("https://drone-pilot-server.onrender.com/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [isLoading]);

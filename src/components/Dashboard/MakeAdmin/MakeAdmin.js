@@ -12,13 +12,15 @@ const MakeAdmin = () => {
   const handleAdminSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("https://floating-dusk-12648.herokuapp.com/users", { email: email, role: "admin" })
+      .put("https://drone-pilot-server.onrender.com/users", {
+        email: email,
+        role: "admin",
+      })
       .then((res) => {
         if (res.data.modifiedCount === 1) {
           swal("Success", `Admin made successfully`, "success");
-        }
-        else if(res.data.matchedCount === 1){
-            swal("Oops", `Admin already exists`, "warning")
+        } else if (res.data.matchedCount === 1) {
+          swal("Oops", `Admin already exists`, "warning");
         }
       })
       .catch((error) => {

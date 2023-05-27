@@ -12,15 +12,17 @@ const ProductDetails = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("https://floating-dusk-12648.herokuapp.com/orders", data).then((res) => {
-      history.push("/purchasesuccessful");
-      console.log(res);
-    });
+    axios
+      .post("https://drone-pilot-server.onrender.com/orders", data)
+      .then((res) => {
+        history.push("/purchasesuccessful");
+        console.log(res);
+      });
     console.log(data);
   };
 
   useEffect(() => {
-    fetch("https://floating-dusk-12648.herokuapp.com/products/" + id)
+    fetch("https://drone-pilot-server.onrender.com/products/" + id)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);

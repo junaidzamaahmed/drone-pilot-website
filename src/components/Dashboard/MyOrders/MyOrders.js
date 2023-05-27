@@ -36,7 +36,7 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`https://floating-dusk-12648.herokuapp.com/orders/${user.uid}`)
+    fetch(`https://drone-pilot-server.onrender.com/orders/${user.uid}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -51,7 +51,7 @@ const MyOrders = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://floating-dusk-12648.herokuapp.com/orders/${id}`)
+          .delete(`https://drone-pilot-server.onrender.com/orders/${id}`)
           .then((res) => {
             console.log(res);
             if (res.data.deletedCount === 1) {
